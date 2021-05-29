@@ -1,5 +1,5 @@
 const axios = require("axios");
-const sample_obj = require("./templates");
+const template = require("./templates");
 
 const {
   allMetafields,

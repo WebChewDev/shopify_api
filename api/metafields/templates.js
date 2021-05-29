@@ -1,4 +1,12 @@
-const mfTemplate = (namespace, key, value, valueType, description) => {
+// TODO: turn this template into a form for the user to update metafields
+
+module.exports = mfTemplate = (
+  namespace,
+  key,
+  value,
+  valueType,
+  description
+) => {
   data = {
     metafield: {
       namespace,
@@ -10,13 +18,3 @@ const mfTemplate = (namespace, key, value, valueType, description) => {
   };
   return data;
 };
-
-const sample_obj = mfTemplate(
-  "toys",
-  "sizes",
-  "34cm",
-  "string",
-  "Meth filled toys for the crack babies"
-);
-
-module.exports = sample_obj;
