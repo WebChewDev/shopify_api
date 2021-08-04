@@ -1,13 +1,14 @@
 const axios = require("axios");
-const template = require("./templates");
 
 const {
   allMetafields,
   singleMetafield,
   updateMetafield,
-} = require("../../config/routes");
+  deleteMetafield,
+} = require("../../config/endpoints");
 
-// console.log(sample_obj)
+
+
 
 class Metafield {
   constructor(product, metaId) {
@@ -17,9 +18,9 @@ class Metafield {
   //list a single products metafields
   async getMetafields() {
     await axios({
-      method: "get",
-      url: allMetafields(this.product),
-    })
+        method: "get",
+        url: allMetafields(this.product),
+      })
       .then((res) => {
         console.log(res.data.metafields);
       })
@@ -27,23 +28,23 @@ class Metafield {
   }
 
   //create a metafield on a single product
-  async createMetafield() {
+  async createMetafield(data) {
     await axios({
-      method: "post",
-      url: allMetafields(this.product),
-      data: sample_obj,
-    })
+        method: "post",
+        url: allMetafields(this.product),
+        data: data,
+      })
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
   }
 
   // update a single metafield
-  async updateMetafield() {
+  async updateMetafield(data) {
     await axios({
-      method: "put",
-      url: singleMetafield(this.product, this.metaId),
-      data: updateField,
-    })
+        method: "put",
+        url: updateMetafield(this.metaId),
+        data: data,
+      })
       .then((res) => console.log(res.data.metafields))
       .catch((err) => console.log(err));
   }
@@ -51,9 +52,9 @@ class Metafield {
   //delete a single metafield from a product
   async deleteMetafield() {
     await axios({
-      method: "delete",
-      url: singleMetafield(this.product, this.metaId),
-    })
+        method: "delete",
+        url: deleteMetafield(this.metaId),
+      })
       .then((res) => console.log(res.data.metafields))
       .catch((err) => console.log(err));
   }

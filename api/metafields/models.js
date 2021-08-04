@@ -1,19 +1,18 @@
 // TODO: turn this template into a form for the user to update metafields
 
-module.exports = mfTemplate = (
+module.exports = (
   namespace,
   key,
   value,
-  valueType,
-  description
+  value_type,
+
 ) => {
   data = {
     metafield: {
       namespace,
       key,
       value,
-      valueType,
-      description,
+      value_type,
     },
   };
   return data;

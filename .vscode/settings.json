@@ -5,5 +5,6 @@
         "metafields",
         "myshopify",
         "product"
-    ]
+    ],
+    "liveServer.settings.port": 5501
 }
