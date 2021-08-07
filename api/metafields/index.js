@@ -17,10 +17,8 @@ class Metafield {
   }
   //list a single products metafields
   async getMetafields() {
-    await axios({
-        method: "get",
-        url: allMetafields(this.product),
-      })
+    await axios
+      .get(allMetafields(this.product))
       .then((res) => {
         console.log(res.data.metafields);
       })

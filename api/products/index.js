@@ -1,5 +1,8 @@
 const axios = require("axios");
 const route = require("../../config/endpoints")
+const meta = require('./helper')
+
+
 
 
 
@@ -8,23 +11,9 @@ class Products {
     this.product = product
   }
   async getProducts() {
-    await axios({
-        method: "get",
-        url: route.allProducts,
-      })
+    await axios(route.allProducts)
       .then((res) => {
-        const data = res.data
-
-        let dates = []
-
-        data.products.forEach(product => {
-          const parsedTime = Date.parse(product.created_at)
-          dates.push(parsedTime)
-        })
-
-        const latestDate = Math.max.apply(Math, dates)
-
-        console.log(latestDate)
+        meta.getCreatedByDate(res)
       })
       .catch((err) => console.log(err));
   }

@@ -7,7 +7,7 @@ module.exports = (
   value_type,
 
 ) => {
-  data = {
+  return {
     metafield: {
       namespace,
       key,
@@ -15,5 +15,4 @@ module.exports = (
       value_type,
     },
   };
-  return data;
 };
