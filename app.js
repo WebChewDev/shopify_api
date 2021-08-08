@@ -3,28 +3,43 @@ const express = require('express')
 const app = express()
 const port = process.env.PORT
 const bodyParser = require('body-parser')
-const verify = require('./api/products/helper')
+const verify = require('./api/controllers/helper')
+const models = require('./api/models/metafieldModels')
+
+const Metafield = require('./api/controllers/metafieldController')
+const Products = require('./api/controllers/productController')
+
+const product = new Products()
+// const getProduct = product.getProducts()
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-  extended: true,
+    extended: true,
 }));
 
 
+// listens for a product creation event
+app.post('/webhooks/product/create', (req, res) => {
+    res.sendStatus(200)
+    const products = req.body
 
+    let productId;
 
+    products.variants.forEach((item) => {
+        productId = item['product_id']
+    })
 
+    const meta = new Metafield(productId)
 
+    meta.createMetafield()
+    meta.getMetafields()
 
-app.post('/webhooks/orders/create', async (req, res) => {
-    verify.verifyHMAC(req)
-    console.log(req,res)
+    // console.log(meta)
+    // console.log(products)
 })
 
-app.post('/webhooks/product/create', async (req, res) => {
-    verify.verifyHMAC(req)
-    console.log(req.body)
-})
+
+console.log(models(20391))
 
 
 app.listen(3001, () => {

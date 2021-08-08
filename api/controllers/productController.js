@@ -3,9 +3,6 @@ const route = require("../../config/endpoints")
 const meta = require('./helper')
 
 
-
-
-
 class Products {
   constructor(product) {
     this.product = product
@@ -14,6 +11,7 @@ class Products {
     await axios(route.allProducts)
       .then((res) => {
         meta.getCreatedByDate(res)
+        console.log(res.data)
       })
       .catch((err) => console.log(err));
   }
